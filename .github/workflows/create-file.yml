@@ -34,7 +34,7 @@ jobs:
       - name: Commit and push
         run: |
           git clone https://github.com/prkpushp/ghatest.git
-          cd POC_MYKRONOS_GCP_ENV
+          cd ghatest
           git checkout -b testonline1
           echo $? 
           git config --local user.name 'Pushp Ranjan'

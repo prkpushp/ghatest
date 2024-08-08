@@ -1,0 +1,68 @@
+name: Create and Push File
+
+run-name: ${{ inputs.APP_NAME }}${{ inputs.guid && ' | ' || '' }}${{ inputs.guid }}
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+    inputs:
+      guid:
+        description: 'Unique Indentifier [optional] :(Unique String to identify the Workflow e.g. project Provisioning)' 
+        type: string
+      DEPLOY:
+        type: boolean
+        description: 'Deploy only? [optional]'
+        required: true
+        default: false
+      PROJECT_NAME:
+        description: 'Project Name :(Enter Cloud standard approved project name)'
+        required: true
+        type: string
+      PARENT_FOLDER:
+        description: 'Parent Folder ID :(parent folder ID)'
+        required: true
+        type: string     
+      Substream_ID:
+        description: 'Substream_IDD :(Substream_ID ID)'
+        required: true
+        type: string   
+      ENV_TYPE:
+        description: 'ENV_TYPE ID :(ENV_TYPE ID)'
+        required: true
+        type: string   
+      COST_CENTER:
+        description: 'COST_CENTER ID :(COST_CENTER ID)'
+        required: true
+        type: string   
+      BILLING_ACCOUNT_ID:
+        description: 'BILLING account ID :(BILLING account ID)'
+        required: true
+        type: string   
+
+jobs:
+  create-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Git Config
+        run: |
+          echo "hello"
+          
+      - name: Commit and push
+        run: |
+          git clone https://github.com/UKGEPIC/POC_MYKRONOS_GCP_ENV.git
+          cd POC_MYKRONOS_GCP_ENV
+          git checkout -b testonline1
+          echo $? 
+          git config --local user.name 'Pushp Ranjan'
+          git clone https://github.com/UKGEPIC/POC_MYKRONOS_GCP_ENV
+          echo $?
+          echo "Hello" > my_file.txt
+          echo "Hello there" >> my_file.txt
+          git add .
+          git commit -m "Commit changes"
+          git push
+
+
+
+
